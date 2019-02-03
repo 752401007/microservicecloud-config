@@ -7,64 +7,87 @@ server:
   port: 8001
   
 spring: 
-    profiles: dev
-   application: 
+  application:
     name: microservicecloud-dept 
-   datasource: 
-    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
-    driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
-    url: jdbc:mysql://localhost:3306/cloudDB01              # 数据库名称
-    username: root
-    password: 123456
-    dbcp2: 
-      min-idle: 5                                           # 数据库连接池的最小维持连接数
-      initial-size: 5                                       # 初始化连接数
-      max-total: 5                                          # 最大连接数
-      max-wait-millis: 200                                  # 等待连接获取的最大超时时间
+  datasource: 
+    name: mysql
+    platform: mysql
+    url: jdbc:mysql://localhost:3306/cloudDB01?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: root 
+    password: "0628"   
+    driver-class-name: com.mysql.jdbc.Driver  # mysql驱动包                                                              
+    dbcp2:
+      min-idle: 5                             # 数据库连接池的最小维持连接数
+      initial-size: 5                         # 初始化连接数
+      max-total: 5                            # 最大连接数  
+      max-wait-millis: 200                    # 等待连接获取的最大超时时间
+  jpa: 
+    open-in-view: true
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect 
+    database: MYSQL 
+    generate-ddl: true 
+    hibernate:
+      ddl-auto: update 
+      use-new-id-generator-mappings: true
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       
 eureka: 
   client: #客户端注册进eureka服务列表内
     service-url: 
-       defaultZone: http://eureka7001.com:7001/eureka/
+       defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,  http://eureka7003.com:7003/eureka/ 
   instance:
-    instance-id: dept-8001.com
-    prefer-ip-address: true     #访问路径可以显示IP地址   
+    instance-id: microservicecloud-dept8001
+    prefer-ip-address: true     #访问路径可以显示IP地址 
     
+#本服务的说明 
 info: 
-  app.name: dy-microservicecloud-springcloudconfig01
+  app.name: dy-microservicecloud
   company.name: www.dy.com
   build.artifactId: $project.artifactId$
   build.version: $project.version$
 ---
-server:  
-  port: 8001
-  
 spring: 
-    profiles: test
-   application: 
+  application:
     name: microservicecloud-dept 
-   datasource: 
-    type: com.alibaba.druid.pool.DruidDataSource            # 当前数据源操作类型
-    driver-class-name: org.gjt.mm.mysql.Driver              # mysql驱动包
-    url: jdbc:mysql://localhost:3306/cloudDB02             # 数据库名称
-    username: root
-    password: 123456
-    dbcp2: 
-      min-idle: 5                                           # 数据库连接池的最小维持连接数
-      initial-size: 5                                       # 初始化连接数
-      max-total: 5                                          # 最大连接数
-      max-wait-millis: 200                                  # 等待连接获取的最大超时时间
+  datasource: 
+    name: mysql
+    platform: mysql
+    url: jdbc:mysql://localhost:3306/cloudDB02?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: root 
+    password: "0628"   
+    driver-class-name: com.mysql.jdbc.Driver  # mysql驱动包                                                              
+    dbcp2:
+      min-idle: 5                             # 数据库连接池的最小维持连接数
+      initial-size: 5                         # 初始化连接数
+      max-total: 5                            # 最大连接数  
+      max-wait-millis: 200                    # 等待连接获取的最大超时时间
+  jpa: 
+    open-in-view: true
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect 
+    database: MYSQL 
+    generate-ddl: true 
+    hibernate:
+      ddl-auto: update 
+      use-new-id-generator-mappings: true
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       
 eureka: 
   client: #客户端注册进eureka服务列表内
     service-url: 
-       defaultZone: http://eureka7001.com:7001/eureka/
+       defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,  http://eureka7003.com:7003/eureka/ 
   instance:
-    instance-id: dept-8001.com
-    prefer-ip-address: true     #访问路径可以显示IP地址   
+    instance-id: microservicecloud-dept8001
+    prefer-ip-address: true     #访问路径可以显示IP地址 
     
+#本服务的说明 
 info: 
-  app.name: dy-microservicecloud-springcloudconfig01
+  app.name: dy-microservicecloud
   company.name: www.dy.com
   build.artifactId: $project.artifactId$
   build.version: $project.version$
